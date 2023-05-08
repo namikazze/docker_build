@@ -1,6 +1,6 @@
 # sync rom
-repo init --depth=1 --no-repo-verify -u https://github.com/bananadroid/android_manifest.git -b 13 --git-lfs -g default,-mips,-darwin,-notdefault
-git clone https://github.com/thedoctorsz/local_manifest --depth 1 -b banana-13-lavender .repo/local_manifests
+repo init --depth=1 --no-repo-verify -u https://github.com/NusantaraProject-ROM/android_manifest -b 10 --git-lfs -g default,-mips,-darwin,-notdefault
+git clone https://github.com/thedoctorsz/local_manifest --depth 1 -b nad-10-lavender .repo/local_manifests
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
@@ -10,14 +10,13 @@ timeStart
 source build/envsetup.sh
 export BUILD_USERNAME="$USERNAME"
 export BUILD_HOSTNAME="$HOSTNAME"
-lunch banana_lavender-userdebug
+lunch nad_lavender-userdebug
 mkfifo reading # Jangan di Hapus
 tee "${BUILDLOG}" < reading & # Jangan di Hapus
 build_message "Building Started" # Jangan di Hapus
 progress & # Jangan di Hapus
-m banana -j8 > reading & sleep 95m # Jangan di hapus text line (> reading)
+mka nad -j8 > reading & sleep 95m # Jangan di hapus text line (> reading)
 
 retVal=$?
 timeEnd
 statusBuild
-# build with gapps
